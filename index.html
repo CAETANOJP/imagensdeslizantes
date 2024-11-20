@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandeira</title>
+    <link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
+
+    <div class="imagem-deslizante">
+        <section class="delizante_conteudo">
+            <button type="button" class="deslizante-controle--buttonprev-button" aria-label="Imagem anterior">
+                <i class="fa-regular fa-circle-left"></i>
+            </button>
+
+            <main class="imagem-display" style="background-image: url('./img/carro1.jpg');"></main>
+            <button type="button" class="deslizante-controle--buttonnext-button" aria-label="Próxima imagem">
+                <i class="fa-regular fa-circle-right"></i>
+            </button>
+        </section>
+
+        <nav class="deslizante-navegador">
+            <button class="nav-button" aria-selected="true" aria-label="Carro 1">
+                <img class="thumbnail" src="./img/carro1.jpg" alt="Carro 1" />
+            </button>
+            <button class="nav-button" aria-selected="false" aria-label="Carro 2">
+                <img class="thumbnail" src="./img/carro2.jpg" alt="Carro 2" />
+            </button>
+            <button class="nav-button" aria-selected="false" aria-label="Carro 3">
+                <img class="thumbnail" src="./img/carro3.jpg" alt="Carro 3" />
+            </button>
+            <button class="nav-button" aria-selected="false" aria-label="Carro 4">
+                <img class="thumbnail" src="./img/carro4.jpg" alt="Carro 4" />
+            </button>
+            <button class="nav-button" aria-selected="false" aria-label="Carro 5">
+                <img class="thumbnail" src="./img/carro5.jpg" alt="Carro 5" />
+            </button>
+            <button class="nav-button" aria-selected="false" aria-label="Carro 5">
+                <img class="thumbnail" src="./img/carro6.jpeg" alt="Carro 6" />
+            </button>
+        </nav>
+
+        <button class="menu-toggle" aria-label="Abrir menu de imagens">
+            <img src="./img/icone.png" alt="Ícone do menu" class="menu-icon" />
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

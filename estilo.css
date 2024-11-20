@@ -1,0 +1,174 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --active-color: #0f9fff;
+    --bg-color: #e1e3e5;
+    --icon-default: #bcc0c2;
+    --icon-accent: #f9fafb;
+    --navigation-color: #3d40434d;
+}
+
+body {
+    min-block-size: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.imagem-deslizante {
+    display: flex;
+    flex-direction: column;
+    width: calc(360px, 90vw, 830px);
+    aspect-ratio: 16 / 9;
+    min-height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+}
+
+.imagem-display {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    z-index: -1; 
+}
+
+.deslizante-navegador {
+    z-index: 10; 
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 colunas para telas grandes */
+    gap: 1.25rem;
+    padding: 1rem;
+    place-content: center;
+    background-color: var(--navigation-color);
+    backdrop-filter: blur(6px);
+}
+
+.deslizante-controle--buttonprev-button,
+.deslizante-controle--buttonnext-button {
+    border: 0;
+    background: 0;
+    outline: 0;
+    cursor: pointer;
+    place-content: center;
+    padding-inline: 3vw;
+    z-index: 1; /* Z-index para que o botão esteja acima da imagem de fundo */
+    display: grid;
+}
+
+.nav-button {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5em;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    aspect-ratio: 16 / 9;
+    transition: filter 150ms linear, scale 266ms ease;
+}
+
+.thumbnail {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+.nav-button[aria-selected="true"],
+.nav-button:focus-visible {
+    outline: 0.2em solid var(--active-color);
+    outline-offset: 0.2em;
+}
+
+.nav-button[aria-selected="false"] {
+    filter: opacity(0.7);
+}
+
+.nav-button[aria-selected="false"]:where(:hover, :focus-visible) {
+    filter: opacity(1);
+}
+
+/* Estilos para menu responsivo */
+@media (max-width: 768px) {
+    .menu-toggle {
+        position: absolute; /* Mover o botão para um local absoluto */
+        top: 10px; /* Distância do topo */
+        left: 0px; /* Distância da esquerda */
+        background-color: transparent;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1; /* Para que fique acima das imagens */
+        display: block; /* Mostrar o botão de menu em telas menores */
+    }
+
+    .menu-icon {
+        width: 24px; /* Tamanho pequeno do ícone */
+        height: 24px; /* Tamanho pequeno do ícone */
+        border: 2px solid #fff; /* Borda branca ao redor do ícone */
+        border-radius: 5px; /* Bordas arredondadas para um formato circular */
+        padding: 0px; /* Espaçamento interno para evitar que a borda fique colada à imagem */
+        background-color: transparent; /* Fundo transparente (opcional) */
+    }
+    
+
+    .deslizante-navegador {
+        display: none; /* Ocultar a lista de imagens padrão */
+        flex-wrap: wrap; /* Permitir que as imagens quebrem para a próxima linha */
+        position: absolute;
+        right: 0; /* Mover para a direita da tela */
+        top: 50%; /* Centralizar verticalmente */
+        transform: translateY(-50%); /* Ajustar o posicionamento */
+        width: 300px; /* Aumentar a largura do contêiner para acomodar 2 colunas */
+        background-color: var(--navigation-color);
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 10;
+        grid-template-columns: repeat(2, 1fr); /* Adicionar 2 colunas para o menu */
+        gap: 1rem; /* Espaçamento entre os botões */
+    }
+
+    .deslizante-navegador.active {
+        display: grid; /* Mostrar o menu quando ativo */
+    }
+
+    .nav-button {
+        margin: 0.5rem; /* Adicionar espaço entre botões */
+        height: 80px; /* Aumentar a altura dos botões para melhor visualização */
+        display: flex; /* Permitir flexbox para centralizar a imagem dentro do botão */
+        justify-content: center; /* Centralizar horizontalmente */
+        align-items: center; /* Centralizar verticalmente */
+    }
+    
+    .thumbnail {
+        max-width: 100%; /* Garantir que as imagens ocupem o espaço do botão */
+        height: auto; /* Ajustar altura automaticamente para manter a proporção */
+        object-fit: cover; /* Manter a proporção das imagens */
+    }
+}
+
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Ocultar ícone do menu em telas maiores */
+    }
+
+    .deslizante-navegador {
+        display: flex; /* Mostrar a lista de imagens em telas grandes */
+    }
+}
